@@ -1,0 +1,83 @@
+$rating-good: #6bbe48;
+$rating-above-average: #d6e101;
+$rating-below-average: #f9dc00;
+$rating-excellent: #008e34;
+$rating-poor: #f17215;
+$rating-terrible: #d91722;
+
+@mixin rating-cell($color) {
+  position: relative;
+  .text {
+    color: darken($color,40%);
+    width: 100%;
+    position: absolute;
+    valign: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align: center;
+    left: 0;
+    top: 0;
+    height: 100%;
+
+  }
+  .background {
+    opacity: 0.7;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: lighten($color,15%);
+  }
+}
+
+
+/*
+.table-background {
+    background: rgba(255, 255, 255, 0.5 );
+}
+*/
+
+.table {
+  td, th {
+    text-align: center;
+    valign: middle;
+  }
+}
+
+.table-header-cell {
+  valign: middle;
+  background: rgba(32, 32,  64 , 0.8 );
+  color: white;
+}
+
+
+.rating-terrible {
+  @include rating-cell($rating-terrible);
+}
+
+.rating-poor {
+  @include rating-cell($rating-poor);
+}
+
+.rating-below-average {
+  @include rating-cell($rating-below-average);
+}
+
+.rating-above-average {
+  @include rating-cell($rating-above-average);
+}
+
+.rating-good {
+  @include rating-cell($rating-good);
+}
+
+.rating-excellent {
+  @include rating-cell($rating-excellent);
+}
+
+
+.wrapper {
+  width: 100%;
+}

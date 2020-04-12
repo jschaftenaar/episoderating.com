@@ -1,0 +1,6 @@
+applications:
+- name: episoderating.com
+  memory: 64M
+  routes:
+  - route: episoderating.apps.amsdfw.us
+  - route: episoderating.com
