@@ -11,5 +11,3 @@ if [ "$1" == "release/v1" ]; then
   ibmcloud target --cf
   ibmcloud cf push
 fi
-
-  
