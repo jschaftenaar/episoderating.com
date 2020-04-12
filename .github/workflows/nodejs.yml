@@ -26,6 +26,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build
-    - run: ./cfdeploy
+    - shell: bash
       env:
-        CI: true
+        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      run: |
+        ./cfdeploy.sh ${GITHUB_REF##*/} $CF_API_KEY
