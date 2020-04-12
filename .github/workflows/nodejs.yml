@@ -29,8 +29,5 @@ jobs:
     - shell: bash
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
-        GITHUB_REF: github.ref
-        GITHUB_HEAD_REF: github.head_ref
-        GITHUB_BASE_REF: github.base_ref 
       run: |
-        ./cfdeploy.sh ${GITHUB_REF##*/} $CF_API_KEY
+        ./cfdeploy.sh $GITHUB_REF $CF_API_KEY
