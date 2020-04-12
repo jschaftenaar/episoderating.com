@@ -3,7 +3,6 @@
 echo "The branch is:"
 echo "$1"
 
-#release/paigebot
 if [ "$1" == "refs/heads/release/v1" ]; then
   curl -sL https://ibm.biz/idt-installer | bash
   ibmcloud cf install
