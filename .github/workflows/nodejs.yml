@@ -29,7 +29,7 @@ jobs:
     - shell: bash
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
-        GITHUB_BASE_REF: github.ref
+        GITHUB_REF: github.ref
         GITHUB_HEAD_REF: github.head_ref
         GITHUB_BASE_REF: github.base_ref 
       run: |
