@@ -1,4 +1,4 @@
-Source code for [Episoderating.com](http://episoderating.com)
+Source code for [episoderating.com](https://episoderating.com)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [Express](https://expressjs.com/) and uses [TMDB](https://www.themoviedb.org/) as data source.
 
