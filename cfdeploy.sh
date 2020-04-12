@@ -4,7 +4,7 @@ echo "The branch is:"
 echo "$1"
 
 #release/paigebot
-if [ "$1" == "release/v1" ]; then
+if [ "$1" == "refs/heads/release/v1" ]; then
   curl -sL https://ibm.biz/idt-installer | bash
   ibmcloud cf install
   ibmcloud login -r us-south --apikey=$2
