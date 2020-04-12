@@ -3,7 +3,7 @@
 echo "The branch is:"
 echo "$1"
 
-echo "$GITHUB_BASE_REF"
+echo "$GITHUB_REF"
 echo "$GITHUB_HEAD_REF"
 echo "$GITHUB_BASE_REF"
 
