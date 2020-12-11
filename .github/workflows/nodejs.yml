@@ -28,6 +28,7 @@ jobs:
     - run: npm run build
     - shell: bash
       env:
-        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        ID_RSA: ${{ secrets.ID_RSA }}
+        ID_RSA_PUB: ${{ secrets.ID_RSA_PUB }}
       run: |
         ./dokkudeploy.sh $GITHUB_REF
