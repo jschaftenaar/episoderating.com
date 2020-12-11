@@ -30,4 +30,4 @@ jobs:
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
       run: |
-        ./cfdeploy.sh $GITHUB_REF $CF_API_KEY
+        ./dokkudeploy $GITHUB_REF
