@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  node:
+    image: "node:14"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+      - TMDB_API_KEY=${TMDB_API_KEY}
+      - TMDB_USERNAME=${TMDB_USERNAME}
+      - TMDB_PASSWORD=${TMDB_PASSWORD}
+    volumes:
+      - .:/home/node/app
+    ports:
+      - "580:8080"
+    command: /bin/sh -c "/home/node/app/startup.sh"
