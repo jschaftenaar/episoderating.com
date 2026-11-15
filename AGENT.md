@@ -92,6 +92,8 @@ tests/                Vitest (api, registry, domain)
 
 ## Agent constraints
 
-- Do not commit `.env`, `.dev.vars`, cache contents, or real API keys/tokens.
+- Do not commit `.env`, `.dev.vars`, cache contents, or real API keys/tokens (`OMDB_API_KEY`, `TMDB_API_KEY`, etc.).
+- Keys stay server-side only (Node / Compose env / Cloudflare secrets). Never `VITE_*` them or return them from `/api`.
+- `.dockerignore` excludes `.env` / `.env.*` so `COPY . .` cannot bake secrets into image layers; inject keys at runtime via Compose/`environment`.
 - Prefer extending `DataProvider` + registry over calling OMDb/TMDB from the UI.
 - Keep IMDb `tt…` ids as the public identifier in routes and favorites.
