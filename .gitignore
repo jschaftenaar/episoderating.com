@@ -2,7 +2,8 @@ node_modules/
 dist/
 /cache/
 .env
-.env.local
+.env.*
+!.env.example
 .dev.vars
 .wrangler/
 coverage/

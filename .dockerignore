@@ -1,0 +1,25 @@
+# Dependencies & build output
+node_modules
+dist
+/cache
+coverage
+*.log
+
+# Secrets / local env (never bake into image layers)
+.env
+.env.*
+!.env.example
+.dev.vars
+.wrangler
+
+# VCS / IDE / docs not needed for build
+.git
+.github
+.gitignore
+.cursor
+*.md
+!AGENT.md
+
+# Tests (not required for production image build)
+tests
+vitest.config.ts
