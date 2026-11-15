@@ -1,7 +1,9 @@
-FROM node:26-alpine AS build
+FROM node:26-bookworm-slim AS build
 WORKDIR /app
-COPY package.json package-lock.json* ./
-RUN npm config set fetch-retries 5 \
+ENV NODE_OPTIONS=--dns-result-order=ipv4first
+COPY package.json package-lock.json ./
+RUN npm config set registry https://registry.npmjs.org/ \
+  && npm config set fetch-retries 5 \
   && npm config set fetch-retry-mintimeout 20000 \
   && npm config set fetch-retry-maxtimeout 120000 \
   && for i in 1 2 3 4 5; do \
@@ -11,23 +13,17 @@ RUN npm config set fetch-retries 5 \
      done \
   && test -d node_modules
 COPY . .
-RUN npm run build
+RUN npm run build \
+  && npm prune --omit=dev
 
-FROM node:26-alpine AS runtime
+FROM node:26-bookworm-slim AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=8080
 ENV CACHE_DIR=/app/cache
-COPY package.json package-lock.json* ./
-RUN npm config set fetch-retries 5 \
-  && npm config set fetch-retry-mintimeout 20000 \
-  && npm config set fetch-retry-maxtimeout 120000 \
-  && for i in 1 2 3 4 5; do \
-       npm ci --omit=dev && break; \
-       echo "npm ci --omit=dev failed (attempt $i), retrying..."; \
-       sleep $((i * 5)); \
-     done \
-  && test -d node_modules
+ENV NODE_OPTIONS=--dns-result-order=ipv4first
+COPY package.json package-lock.json ./
+COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/src ./src
 COPY --from=build /app/config ./config
