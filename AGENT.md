@@ -56,9 +56,9 @@ npm start              # production Node: API + static dist
 ### Docker Compose
 
 ```bash
-# .env in repo root with OMDB_API_KEY=…
+# .env in repo root with OMDB_API_KEY=… (optional HOST_PORT=8080)
 docker compose up --build
-# http://localhost:580  → container :8080
+# http://localhost:${HOST_PORT:-8080}  → container :8080
 ```
 
 ### Cloudflare Pages
@@ -80,7 +80,7 @@ index.html            Vite HTML shell
 vite.config.ts        Dev proxy / build
 wrangler.toml         Pages project name + output dir (no secrets)
 Dockerfile            Multi-stage Node 22 image
-docker-compose.yml    Host :580 → app :8080 + cache volume
+docker-compose.yml    Host ${HOST_PORT:-8080} → app :8080 + cache volume
 config/               Favorites IMDb ids
 functions/api/        CF Pages catch-all API
 src/api/              Hono app + favorites helper

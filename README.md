@@ -46,7 +46,7 @@ npm start
 
 ```bash
 docker compose up --build
-# http://localhost:580
+# http://localhost:8080  (override with HOST_PORT in .env)
 ```
 
 ### Cloudflare Pages
