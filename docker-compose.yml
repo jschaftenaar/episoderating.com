@@ -1,16 +1,17 @@
-version: "3.3"
 services:
-  node:
-    image: "node:14"
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-      - TMDB_API_KEY=${TMDB_API_KEY}
-      - TMDB_USERNAME=${TMDB_USERNAME}
-      - TMDB_PASSWORD=${TMDB_PASSWORD}
-    volumes:
-      - .:/home/node/app
+  web:
+    build: .
     ports:
       - "580:8080"
-    command: /bin/sh -c "/home/node/app/startup.sh"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - CACHE_DIR=/app/cache
+      - OMDB_API_KEY=${OMDB_API_KEY:?Set OMDB_API_KEY in .env}
+      - TMDB_API_KEY=${TMDB_API_KEY:-}
+    volumes:
+      - rating-cache:/app/cache
+    restart: unless-stopped
+
+volumes:
+  rating-cache:
